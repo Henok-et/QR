@@ -1,4 +1,4 @@
-import QRCode from "qrcode.react";
+import { QRCode } from "qrcode.react";
 
 const QRCodePage = () => {
 	const frontendUrl = "https://your-frontend.onrender.com/topics"; // Replace with your actual Render frontend URL
