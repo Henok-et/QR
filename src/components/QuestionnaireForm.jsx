@@ -48,25 +48,14 @@ const QuestionnaireForm = () => {
 			{questions.map((q) => (
 				<div key={q.id} className="mb-4">
 					<div className="mb-2 font-medium">{q.text}</div>
-					<div className="flex flex-wrap gap-2">
-						{q.options.map((opt) => (
-							<label
-								key={opt}
-								className="flex items-center gap-1 cursor-pointer"
-							>
-								<input
-									type="radio"
-									name={`q${q.id}`}
-									value={opt}
-									checked={answers[q.id] === opt}
-									onChange={() => handleChange(q.id, opt)}
-									className="accent-blue-500"
-									required
-								/>
-								{opt}
-							</label>
-						))}
-					</div>
+					<input
+						type="text"
+						name={`q${q.id}`}
+						value={answers[q.id] || ""}
+						onChange={(e) => handleChange(q.id, e.target.value)}
+						className="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
+						required
+					/>
 				</div>
 			))}
 			<button
