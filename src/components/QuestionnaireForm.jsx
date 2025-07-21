@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const QuestionnaireForm = () => {
-	const { id } = useParams();
+	const { topic } = useParams();
 	const [questions, setQuestions] = useState([]);
 	const [answers, setAnswers] = useState({});
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`/api/questionnaires/${id}`)
+		fetch(`/api/questions/${encodeURIComponent(topic)}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setQuestions(data.questions);
 				setLoading(false);
 			});
-	}, [id]);
+	}, [topic]);
 
 	const handleChange = (qid, answer) => {
 		setAnswers((a) => ({ ...a, [qid]: answer }));
@@ -27,7 +27,7 @@ const QuestionnaireForm = () => {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				questionnaireId: id,
+				topic,
 				answers: Object.entries(answers).map(([questionId, answer]) => ({
 					questionId: Number(questionId),
 					answer,
@@ -44,7 +44,7 @@ const QuestionnaireForm = () => {
 			onSubmit={handleSubmit}
 			className="max-w-md w-full bg-white rounded-lg shadow p-6 space-y-6"
 		>
-			<h2 className="text-xl font-bold mb-4">Questionnaire</h2>
+			<h2 className="text-xl font-bold mb-4">{topic} Questionnaire</h2>
 			{questions.map((q) => (
 				<div key={q.id} className="mb-4">
 					<div className="mb-2 font-medium">{q.text}</div>

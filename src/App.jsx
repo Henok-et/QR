@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import QuestionnaireList from "./components/QuestionnaireList";
+import Topics from "./components/Topics";
 import QuestionnaireForm from "./components/QuestionnaireForm";
 import ConfirmationPage from "./components/ConfirmationPage";
 import "./App.css";
@@ -10,9 +10,10 @@ function App() {
 		<Router>
 			<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
 				<Routes>
-					<Route path="/" element={<QuestionnaireList />} />
-					<Route path="/questionnaire/:id" element={<QuestionnaireForm />} />
+					<Route path="/topics" element={<Topics />} />
+					<Route path="/questionnaire/:topic" element={<QuestionnaireForm />} />
 					<Route path="/confirmation" element={<ConfirmationPage />} />
+					<Route path="/" element={<Topics />} />
 				</Routes>
 			</div>
 		</Router>

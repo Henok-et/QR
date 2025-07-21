@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 const ResponseSchema = new mongoose.Schema({
-	questionnaireId: { type: String, required: true },
+	topic: { type: String, required: true },
 	answers: [
 		{
 			questionId: Number,

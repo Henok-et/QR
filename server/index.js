@@ -38,10 +38,38 @@ app.get("/api/questionnaires/:id", async (req, res) => {
 	res.json({ questions });
 });
 
-// Save response
+// List 5 health topics
+app.get("/api/topics", (req, res) => {
+	const topics = [
+		"Mental Health",
+		"Nutrition",
+		"Exercise and Fitness",
+		"Sleep Hygiene",
+		"Stress Management",
+	];
+	res.json(topics);
+});
+
+// Get 10 questions for a topic
+app.get("/api/questions/:topic", (req, res) => {
+	const topic = req.params.topic;
+	// For demo, use static questions. Replace with DB lookup for real app.
+	const questions = Array.from({ length: 10 }).map((_, i) => ({
+		id: i + 1,
+		text: `${topic} Question ${i + 1}`,
+	}));
+	res.json({ topic, questions });
+});
+
+// Save response for a topic
 app.post("/api/responses", async (req, res) => {
 	try {
-		const response = new Response(req.body);
+		const { topic, answers } = req.body;
+		const response = new Response({
+			topic,
+			answers,
+			createdAt: new Date(),
+		});
 		await response.save();
 		res.status(201).json({ message: "Response saved" });
 	} catch (err) {
