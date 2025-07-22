@@ -6,7 +6,8 @@ const Topics = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch("/api/topics")
+		const API_BASE = import.meta.env.VITE_API_URL || "";
+		fetch(`${API_BASE}/api/topics`)
 			.then((res) => res.json())
 			.then(setTopics);
 	}, []);
