@@ -9,7 +9,8 @@ const QuestionnaireForm = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`/api/questions/${encodeURIComponent(topic)}`)
+		const API_BASE = import.meta.env.VITE_API_URL || "";
+		fetch(`${API_BASE}/api/questions/${encodeURIComponent(topic)}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setQuestions(data.questions);
@@ -23,7 +24,8 @@ const QuestionnaireForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await fetch("/api/responses", {
+		const API_BASE = import.meta.env.VITE_API_URL || "";
+		await fetch(`${API_BASE}/api/responses`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
