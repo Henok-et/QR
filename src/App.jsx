@@ -15,7 +15,7 @@ function App() {
 					<Route path="/topics" element={<Topics />} />
 					<Route path="/questionnaire/:topic" element={<QuestionnaireForm />} />
 					<Route path="/confirmation" element={<ConfirmationPage />} />
-					<Route path="/" element={<Topics />} />
+					<Route path="/" element={<QRCodePage />} />
 				</Routes>
 			</div>
 		</Router>

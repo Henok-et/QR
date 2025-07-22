@@ -1,7 +1,7 @@
 import { QRCodeCanvas } from "qrcode.react";
 
 const QRCodePage = () => {
-	const frontendUrl = "https://your-frontend.onrender.com/topics"; // Replace with your actual Render frontend URL
+	const frontendUrl = "https://qr-d635.onrender.com/topics";
 	return (
 		<div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50">
 			<h2 className="text-2xl font-bold mb-4">Scan to Start Questionnaire</h2>
