@@ -69,28 +69,29 @@ const Topics = () => {
 	}
 
 	return (
-		<div className="max-w-md w-full bg-white rounded-lg shadow p-6">
-			<h2 className="text-2xl font-bold mb-4 text-center">
-				Choose a Health Topic
-			</h2>
-			{topics.length === 0 ? (
-				<p>No topics available.</p>
-			) : (
-				<ul className="space-y-3">
-					{topics.map((topic) => (
-						<li key={topic}>
+		<div className="min-h-screen w-full flex flex-col items-center justify-start bg-gradient-to-b from-blue-50 to-blue-100 p-2">
+			<div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-4 mt-6 mb-4">
+				<h2 className="text-2xl font-bold mb-6 text-center text-blue-700">
+					Choose a Health Topic
+				</h2>
+				{topics.length === 0 ? (
+					<p className="text-center text-gray-500">No topics available.</p>
+				) : (
+					<div className="flex flex-col gap-4">
+						{topics.map((topic) => (
 							<button
-								className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+								key={topic}
+								className="w-full py-4 px-4 bg-gradient-to-r from-blue-500 to-blue-400 text-white rounded-xl shadow-md text-lg font-semibold hover:from-blue-600 hover:to-blue-500 active:scale-95 transition-all border-2 border-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-300"
 								onClick={() =>
 									navigate(`/questionnaire/${encodeURIComponent(topic)}`)
 								}
 							>
 								{topic}
 							</button>
-						</li>
-					))}
-				</ul>
-			)}
+						))}
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
