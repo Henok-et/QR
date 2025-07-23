@@ -8,11 +8,21 @@ const Topics = () => {
 
 	useEffect(() => {
 		const API_BASE = import.meta.env.VITE_API_URL || "";
+		console.log("[Topics] API_BASE:", API_BASE);
 		fetch(`${API_BASE}/api/topics`)
-			.then((res) => res.json())
+			.then((res) => {
+				console.log("[Topics] Response status:", res.status);
+				if (!res.ok) {
+					throw new Error(`HTTP error! status: ${res.status}`);
+				}
+				return res.json();
+			})
 			.then((data) => {
 				console.log("Fetched topics:", data);
 				setTopics(data);
+			})
+			.catch((err) => {
+				console.error("[Topics] Fetch error:", err);
 			});
 	}, []);
 
