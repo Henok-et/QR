@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Topics = () => {
+	console.log("Topics component mounted");
 	const [topics, setTopics] = useState([]);
 	const navigate = useNavigate();
 
