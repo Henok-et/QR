@@ -1,3 +1,13 @@
+function NotFound() {
+	React.useEffect(() => {
+		console.log("[Router] NotFound route rendered");
+	}, []);
+	return (
+		<div className="text-center text-red-500 text-xl font-bold mt-8">
+			404 - Page Not Found
+		</div>
+	);
+}
 import React from "react";
 import {
 	BrowserRouter as Router,
@@ -33,6 +43,7 @@ function App() {
 					<Route path="/questionnaire/:topic" element={<QuestionnaireForm />} />
 					<Route path="/confirmation" element={<ConfirmationPage />} />
 					<Route path="/" element={<QRCodePage />} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</div>
 		</Router>
