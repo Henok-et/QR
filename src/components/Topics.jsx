@@ -17,8 +17,9 @@ const Topics = () => {
 			return;
 		}
 
-		fetch(`${API_BASE}/api/topics`, { mode: "cors" })
-			.then((res) => {
+		const fetchTopics = async (retries = 3, delay = 2000) => {
+			try {
+				const res = await fetch(`${API_BASE}/api/topics`, { mode: "cors" });
 				console.log("[Topics] Response status:", res.status);
 				console.log(
 					"[Topics] Response headers:",
@@ -27,21 +28,26 @@ const Topics = () => {
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`);
 				}
-				return res.json();
-			})
-			.then((data) => {
+				const data = await res.json();
 				console.log("[Topics] Fetched data:", data);
 				if (!Array.isArray(data)) {
 					throw new Error("Expected an array of topics");
 				}
 				setTopics(data);
 				setLoading(false);
-			})
-			.catch((err) => {
+			} catch (err) {
 				console.error("[Topics] Fetch error:", err.message);
-				setError(err.message);
-				setLoading(false);
-			});
+				if (retries > 0) {
+					console.log(`[Topics] Retrying... (${retries} attempts left)`);
+					setTimeout(() => fetchTopics(retries - 1, delay), delay);
+				} else {
+					setError(err.message);
+					setLoading(false);
+				}
+			}
+		};
+
+		fetchTopics();
 	}, []);
 
 	if (loading) {
