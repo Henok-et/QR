@@ -1,16 +1,16 @@
-// server/index.js
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
+/* global process */
+// server/index.js (ESM)
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+import Questionnaire from "./models/Questionnaire.js";
+import Response from "./models/Response.js";
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-// Models
-const Questionnaire = require("./models/Questionnaire");
-const Response = require("./models/Response");
 
 // List 7 questionnaires (static for now)
 app.get("/api/questionnaires", async (req, res) => {

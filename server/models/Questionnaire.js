@@ -1,5 +1,5 @@
-// server/models/Questionnaire.js
-const mongoose = require("mongoose");
+// server/models/Questionnaire.js (ESM)
+import mongoose from "mongoose";
 
 const QuestionnaireSchema = new mongoose.Schema({
 	name: { type: String, required: true },
@@ -11,4 +11,5 @@ const QuestionnaireSchema = new mongoose.Schema({
 	],
 });
 
-module.exports = mongoose.model("Questionnaire", QuestionnaireSchema);
+const Questionnaire = mongoose.model("Questionnaire", QuestionnaireSchema);
+export default Questionnaire;

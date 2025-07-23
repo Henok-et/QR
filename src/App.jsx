@@ -6,7 +6,6 @@ import QRCodePage from "./components/QRCodePage";
 import "./App.css";
 
 function App() {
-	const frontendUrl = "https://your-frontend.onrender.com"; // Replace with your actual Render frontend URL
 	return (
 		<Router>
 			<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">

@@ -1,5 +1,5 @@
-// server/models/Response.js
-const mongoose = require("mongoose");
+// server/models/Response.js (ESM)
+import mongoose from "mongoose";
 
 const ResponseSchema = new mongoose.Schema({
 	topic: { type: String, required: true },
@@ -12,4 +12,5 @@ const ResponseSchema = new mongoose.Schema({
 	createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Response", ResponseSchema);
+const Response = mongoose.model("Response", ResponseSchema);
+export default Response;
