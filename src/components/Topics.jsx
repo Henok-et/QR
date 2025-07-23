@@ -9,7 +9,10 @@ const Topics = () => {
 		const API_BASE = import.meta.env.VITE_API_URL || "";
 		fetch(`${API_BASE}/api/topics`)
 			.then((res) => res.json())
-			.then(setTopics);
+			.then((data) => {
+				console.log("Fetched topics:", data);
+				setTopics(data);
+			});
 	}, []);
 
 	return (
