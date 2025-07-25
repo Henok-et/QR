@@ -39,7 +39,12 @@ const QuestionnaireForm = () => {
 		navigate("/confirmation");
 	};
 
-	if (loading) return <div>Loading...</div>;
+	if (loading)
+		return (
+			<div className="flex items-center justify-center min-h-screen text-blue-700 text-xl">
+				Loading...
+			</div>
+		);
 
 	return (
 		<form
@@ -47,6 +52,14 @@ const QuestionnaireForm = () => {
 			className="max-w-md w-full min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 rounded-t-2xl shadow-lg p-2 flex flex-col space-y-4 mx-auto"
 			style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.08)" }}
 		>
+			{/* Step Indicator */}
+			<div className="w-full flex justify-center items-center mb-2 sticky top-0 z-20 bg-blue-50 rounded-t-2xl">
+				<span className="text-blue-700 font-semibold text-base">
+					{questions.length > 0
+						? `Answer all questions below`
+						: "No questions found"}
+				</span>
+			</div>
 			<h2 className="text-3xl font-extrabold mb-4 text-center text-blue-700 sticky top-0 bg-white z-10 py-4 rounded-t-2xl shadow">
 				{topic} Questionnaire
 			</h2>
@@ -56,11 +69,13 @@ const QuestionnaireForm = () => {
 						key={q.id}
 						className="mb-10 bg-white rounded-2xl shadow-md px-4 py-6 flex flex-col gap-3 border border-blue-100"
 					>
-						<div className="font-bold text-xl text-gray-900 mb-2">
-							<span className="inline-block bg-blue-100 text-blue-700 rounded-full px-3 py-1 text-base font-semibold mr-2">
+						<div className="flex items-center mb-2">
+							<span className="inline-block bg-blue-100 text-blue-700 rounded-full px-4 py-2 text-xl font-extrabold mr-3">
 								{idx + 1}
 							</span>
-							{q.text}
+							<span className="font-bold text-lg sm:text-xl text-gray-900 text-left">
+								{q.text}
+							</span>
 						</div>
 						<textarea
 							name={`q${q.id}`}
